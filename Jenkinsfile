@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -8,29 +8,30 @@ pipeline {
                 checkout scm
             }
         }
-        
+
         stage('Install Dependencies') {
             steps {
                 // Install npm packages
                 sh 'npm install'
             }
         }
-        
+
         stage('Test') {
             steps {
                 // Run tests
                 sh 'npm test'
             }
         }
-        
+
         stage('Deploy to Render') {
-    steps {
-        withCredentials([string(credentialsId: 'RENDER_DEPLOY_HOOK_URL', variable: 'RENDER_DEPLOY_HOOK_URL')]) {
-            sh 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
+            steps {
+                withCredentials([string(credentialsId: 'RENDER_DEPLOY_HOOK_URL', variable: 'RENDER_DEPLOY_HOOK_URL')]) {
+                    sh 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
+                }
+            }
         }
     }
-}
-    
+
     post {
         success {
             echo 'Pipeline completed successfully!'
