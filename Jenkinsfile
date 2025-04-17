@@ -12,21 +12,21 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install npm packages
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests
-                sh 'npm test'
+                bat 'npm test'
             }
         }
 
         stage('Deploy to Render') {
             steps {
                 withCredentials([string(credentialsId: 'RENDER_DEPLOY_HOOK_URL', variable: 'RENDER_DEPLOY_HOOK_URL')]) {
-                    sh 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
+                    bat 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
                 }
             }
         }
