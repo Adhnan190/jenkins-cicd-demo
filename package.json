@@ -1,0 +1,23 @@
+{
+    "name": "jenkins-cicd-demo",
+    "version": "1.0.0",
+    "description": "A demo project for Jenkins CI/CD with GitHub and Render",
+    "main": "public/script.js",
+    "scripts": {
+        "test": "jest",
+        "start": "serve public"
+    },
+    "dependencies": {
+        "serve": "^14.2.0"
+    },
+    "devDependencies": {
+        "jest": "^29.5.0"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs"
+}
