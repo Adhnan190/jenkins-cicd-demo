@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy to Render') {
             steps {
                 withCredentials([string(credentialsId: 'RENDER_DEPLOY_HOOK_URL', variable: 'RENDER_DEPLOY_HOOK_URL')]) {
-                    bat 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
+                    bat 'curl -X POST %RENDER_DEPLOY_HOOK_URL%'
                 }
             }
         }
