@@ -24,12 +24,12 @@ pipeline {
         }
         
         stage('Deploy to Render') {
-            steps {
-                // Deploy to Render using their deploy hook
-                sh 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
-            }
+    steps {
+        withCredentials([string(credentialsId: 'RENDER_DEPLOY_HOOK_URL', variable: 'RENDER_DEPLOY_HOOK_URL')]) {
+            sh 'curl -X POST ${RENDER_DEPLOY_HOOK_URL}'
         }
     }
+}
     
     post {
         success {
